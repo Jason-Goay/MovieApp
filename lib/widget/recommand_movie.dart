@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_artisan/Screens/movie_detail_screen.dart';
 
-class TrendingMovies extends StatelessWidget {
+class RecommandMovies extends StatelessWidget {
   final List trending;
 
-  const TrendingMovies({Key? key, required this.trending}) : super(key: key);
+  const RecommandMovies({Key? key, required this.trending}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,7 +50,6 @@ class TrendingMovies extends StatelessWidget {
                                       description: trending[index]['overview'],
                                       vote: trending[index]['vote_average']
                                           .toString(),
-                                      index: index,
                                     )));
                       },
                       child: Container(

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_artisan/Screens/favorite_movie_screen.dart';
-
-import 'package:movie_app_artisan/Screens/movie_detail_screen.dart';
-
 import 'package:movie_app_artisan/providers/favourite_provider.dart';
-import 'package:movie_app_artisan/providers/movie_data_provider.dart';
 
 import 'package:provider/provider.dart';
 import './Screens/dashboard_screen.dart';

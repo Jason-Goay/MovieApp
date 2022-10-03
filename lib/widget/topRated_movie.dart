@@ -41,7 +41,6 @@ class TopRatedMovies extends StatelessWidget {
                                       description: toprated[index]['overview'],
                                       vote: toprated[index]['vote_average']
                                           .toString(),
-                                      index: index,
                                     )));
                       },
                       child: Container(

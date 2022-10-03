@@ -9,6 +9,7 @@ class MovieData with ChangeNotifier {
   final String? bannerurl;
   final String? description;
   final String? vote;
+  final bool? isFav;
 
   MovieData(
       {required this.id,
@@ -16,34 +17,42 @@ class MovieData with ChangeNotifier {
       required this.posterurl,
       this.bannerurl,
       this.description,
-      this.vote});
+      this.vote,
+      this.isFav});
 }
 
 class FavoriteProvider with ChangeNotifier {
   final List<MovieData> _items = [];
+  final List<String> _itemsId = [];
   bool isChecked = false;
   List<MovieData> get items {
     return [..._items];
   }
 
+  List<String> get itemsId {
+    return [..._itemsId];
+  }
+
   void toggleFavorite(MovieData data) {
     if (isChecked) {
       _items.remove(data);
+      _itemsId.remove(data.id);
     } else {
       _items.add(data);
-      isChecked = !isChecked;
+      _itemsId.add(data.id);
     }
     notifyListeners();
   }
 
   bool isExist(MovieData data) {
-    final isExist = _items.contains(data);
+    final isExist = _itemsId.contains(data.id);
     return isExist;
   }
 
   void removeMovie(MovieData data) {
     _items.remove(data);
-    isChecked = !isChecked;
+    _itemsId.remove(data.id);
+
     notifyListeners();
   }
 

@@ -17,7 +17,7 @@ class FavoriteMovieScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: provider.items.length,
-        itemBuilder: (context, index) {
+        itemBuilder: (context, ind) {
           return ListTile(
             title: InkWell(
               onTap: () {
@@ -25,16 +25,15 @@ class FavoriteMovieScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => MovieDetailScreen(
-                              id: provider.items[index].id,
-                              name: provider.items[index].name,
+                              id: provider.items[ind].id,
+                              name: provider.items[ind].name,
                               bannerurl:
-                                  'https://image.tmdb.org/t/p/w500${provider.items[index].bannerurl}',
+                                  'https://image.tmdb.org/t/p/w500${provider.items[ind].bannerurl}',
                               posterurl:
-                                  'https://image.tmdb.org/t/p/w500${provider.items[index].posterurl}',
+                                  'https://image.tmdb.org/t/p/w500${provider.items[ind].posterurl}',
                               description:
-                                  provider.items[index].description.toString(),
-                              vote: provider.items[index].vote.toString(),
-                              index: index,
+                                  provider.items[ind].description.toString(),
+                              vote: provider.items[ind].vote.toString(),
                             )));
               },
               child: Row(
@@ -43,25 +42,25 @@ class FavoriteMovieScreen extends StatelessWidget {
                     height: 200,
                     width: 100,
                     child: Image.network(
-                        'https://image.tmdb.org/t/p/w500${provider.items[index].posterurl}'),
+                        'https://image.tmdb.org/t/p/w500${provider.items[ind].posterurl}'),
                   ),
-                  Text(provider.items[index].name),
+                  Text(provider.items[ind].name),
                 ],
               ),
             ),
             trailing: IconButton(
               onPressed: () {
                 MovieData added = MovieData(
-                  name: provider.items[index].name,
-                  posterurl: provider.items[index].posterurl,
-                  id: provider.items[index].id,
-                  bannerurl: provider.items[index].bannerurl,
-                  description: provider.items[index].description,
-                  vote: provider.items[index].vote,
+                  name: provider.items[ind].name,
+                  posterurl: provider.items[ind].posterurl,
+                  id: provider.items[ind].id,
+                  bannerurl: provider.items[ind].bannerurl,
+                  description: provider.items[ind].description,
+                  vote: provider.items[ind].vote,
                 );
-                provider.removeMovie(provider.items[index]);
+                provider.removeMovie(provider.items[ind]);
               },
-              icon: provider.isExist(provider.items[index])
+              icon: provider.isExist(provider.items[ind])
                   ? const Icon(Icons.delete, color: Colors.red)
                   : const Icon(Icons.favorite_border),
             ),

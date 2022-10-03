@@ -19,16 +19,15 @@ class MovieDetailScreen extends StatelessWidget {
   static const routeName = '/movie-details';
   // final MovieDetailArguments arguments;
   final String id, name, description, bannerurl, posterurl, vote;
-  final int index;
 
-  const MovieDetailScreen(
-      {required this.id,
-      required this.name,
-      required this.description,
-      required this.bannerurl,
-      required this.posterurl,
-      required this.vote,
-      required this.index});
+  const MovieDetailScreen({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.bannerurl,
+    required this.posterurl,
+    required this.vote,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,8 @@ class MovieDetailScreen extends StatelessWidget {
         id: id,
         description: description,
         vote: vote,
-        bannerurl: bannerurl);
+        bannerurl: bannerurl,
+        isFav: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(name),
@@ -69,12 +69,14 @@ class MovieDetailScreen extends StatelessWidget {
             ),
             IconButton(
                 onPressed: () {
-                  provider.toggleFavorite(added);
+                  provider.isExist(added)
+                      ? null
+                      : provider.toggleFavorite(added);
                 },
                 // icon: provider.isChecked
                 //     ? const Icon(Icons.favorite, color: Colors.red)
                 //     : const Icon(Icons.favorite_border, color: Colors.white)),
-                icon: provider.isChecked
+                icon: provider.isExist(added)
                     ? Container()
                     : const Icon(Icons.favorite, color: Colors.red))
           ],
@@ -82,7 +84,11 @@ class MovieDetailScreen extends StatelessWidget {
         Container(
             padding: EdgeInsets.all(10),
             child: Text(name,
-                style: TextStyle(color: Colors.white, fontSize: 20))),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold))),
         Row(
           children: [
             Container(

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_artisan/Screens/favorite_movie_screen.dart';
 
 import 'package:movie_app_artisan/widget/topRated_movie.dart';
-import 'package:movie_app_artisan/widget/treading_movie.dart';
+import 'package:movie_app_artisan/widget/recommand_movie.dart';
 import 'package:provider/provider.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
@@ -21,7 +21,7 @@ class DashboardScreen extends StatelessWidget {
   static Future getMovieData() async {
     TMDB tmdbWithCustomLogs = TMDB(
       ApiKeys(apikey, readaccesstoken),
-      logConfig: ConfigLogger(
+      logConfig: const ConfigLogger(
         showLogs: true,
         showErrorLogs: true,
       ),
@@ -29,11 +29,9 @@ class DashboardScreen extends StatelessWidget {
 
     Map trendingresult = await tmdbWithCustomLogs.v3.trending.getTrending();
     Map topratedresult = await tmdbWithCustomLogs.v3.movies.getTopRated();
-    // Map tvresult = await tmdbWithCustomLogs.v3.tv.getPouplar();
 
     _movies = trendingresult['results'];
     _topRatedMovies = topratedresult['results'];
-    // _popularMovies = tvresult['results'];
 
     var response = await http.get(Uri.parse(
       'https://api.themoviedb.org/3/movie/popular?api_key=9c9576f8c2e86949a3220fcc32ae2fb6',
@@ -77,7 +75,7 @@ class DashboardScreen extends StatelessWidget {
                 return SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      TrendingMovies(
+                      RecommandMovies(
                         trending: _movies,
                       ),
                       TopRatedMovies(
