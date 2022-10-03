@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_artisan/Screens/movie_detail_screen.dart';
 
 class RecommandMovies extends StatelessWidget {
-  final List trending;
+  final List recommand;
 
-  const RecommandMovies({Key? key, required this.trending}) : super(key: key);
+  const RecommandMovies({Key? key, required this.recommand}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,14 +21,14 @@ class RecommandMovies extends StatelessWidget {
               height: 270,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: trending.length,
+                  itemCount: recommand.length,
                   itemBuilder: (context, index) {
-                    if (trending[index]['title'].toString() == null &&
-                        trending[index]['title'] == null &&
-                        trending[index]['poster_path'] == null &&
-                        trending[index]['overview'] == null &&
-                        trending[index]['vote_average'] == null &&
-                        trending[index]['release_date'] == null) {
+                    if (recommand[index]['title'].toString() == null &&
+                        recommand[index]['title'] == null &&
+                        recommand[index]['poster_path'] == null &&
+                        recommand[index]['overview'] == null &&
+                        recommand[index]['vote_average'] == null &&
+                        recommand[index]['release_date'] == null) {
                       return Container(
                         child: Text("Loading..."),
                       );
@@ -39,16 +39,16 @@ class RecommandMovies extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => MovieDetailScreen(
-                                      id: trending[index]['id'].toString(),
-                                      name: trending[index]['title'],
+                                      id: recommand[index]['id'].toString(),
+                                      name: recommand[index]['title'],
                                       bannerurl:
                                           'https://image.tmdb.org/t/p/w500' +
-                                              trending[index]['backdrop_path'],
+                                              recommand[index]['backdrop_path'],
                                       posterurl:
                                           'https://image.tmdb.org/t/p/w500' +
-                                              trending[index]['poster_path'],
-                                      description: trending[index]['overview'],
-                                      vote: trending[index]['vote_average']
+                                              recommand[index]['poster_path'],
+                                      description: recommand[index]['overview'],
+                                      vote: recommand[index]['vote_average']
                                           .toString(),
                                     )));
                       },
@@ -61,15 +61,15 @@ class RecommandMovies extends StatelessWidget {
                                 image: DecorationImage(
                                   image: NetworkImage(
                                       'https://image.tmdb.org/t/p/w500' +
-                                          trending[index]['poster_path']),
+                                          recommand[index]['poster_path']),
                                 ),
                               ),
                               height: 200,
                             ),
                             SizedBox(height: 5),
                             Container(
-                              child: Text(trending[index]['title'] != null
-                                  ? trending[index]['title']
+                              child: Text(recommand[index]['title'] != null
+                                  ? recommand[index]['title']
                                   : 'Loading'),
                             )
                           ],

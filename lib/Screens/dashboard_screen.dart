@@ -76,7 +76,7 @@ class DashboardScreen extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       RecommandMovies(
-                        trending: _movies,
+                        recommand: _movies,
                       ),
                       TopRatedMovies(
                         toprated: _topRatedMovies,
